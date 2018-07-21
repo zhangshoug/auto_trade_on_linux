@@ -2,6 +2,7 @@ import pyautogui
 import pytesseract
 import time
 
+#以前登录已保存交易帐号，故没有实现自动输入交易帐号。
 ##交易密码改成自己的
 password = '123456'
 ##按纽在屏幕上的坐标需要修改成适合自己机器的
