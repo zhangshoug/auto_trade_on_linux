@@ -65,21 +65,28 @@ time.sleep(2)
 pyautogui.click(560,380)
 secs_between_keys = 0.1
 pyautogui.typewrite(password, interval=secs_between_keys)
-##识别验证码
-##按纽在屏幕上的坐标region需要修改成适合自己机器的
-im = pyautogui.screenshot(region=(798, 400, 60 ,25))
-im.save('/tmp/temp.png')
-time.sleep(10)
-captcha = pytesseract.image_to_string('/tmp/temp.png')
-time.sleep(5)
-##输入验证码
-##输入框在屏幕上的坐标需要修改成适合自己机器的
-pyautogui.click(670,415)
-secs_between_keys = 0.1
-pyautogui.typewrite(captcha, interval=secs_between_keys)
-##点击登录
-##按纽在屏幕上的坐标region需要修改成适合自己机器的
-region=(555, 435, 60 ,20)
-x,y = pyautogui.center(region)
-pyautogui.doubleClick(x,y)
-time.sleep(10)
+##识别验证码输入验证码直到成功
+captcha = 'testcaptcha'
+while not (captcha == '') :
+    ##按纽在屏幕上的坐标region需要修改成适合自己机器的
+    im = pyautogui.screenshot(region=(798, 400, 60 ,25))
+    im.save('/tmp/temp.png')
+    time.sleep(10)
+    captcha = pytesseract.image_to_string('/tmp/temp.png')
+    time.sleep(5)
+    if not (captcha == '') :
+        ##输入验证码
+        ##输入框在屏幕上的坐标需要修改成适合自己机器的
+        pyautogui.click(670,415)
+        secs_between_keys = 0.1
+        pyautogui.typewrite(captcha, interval=secs_between_keys)
+        ##点击登录
+        ##按纽在屏幕上的坐标region需要修改成适合自己机器的
+        region=(555, 435, 60 ,20)
+        x,y = pyautogui.center(region)
+        pyautogui.doubleClick(x,y)
+        time.sleep(20)
+if captcha == '':
+    print("登录成功")
+time.sleep(30)
+
