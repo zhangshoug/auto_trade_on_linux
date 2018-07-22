@@ -2,7 +2,6 @@ import pyautogui
 import pytesseract
 import time
 
-#以前登录已保存交易帐号，故没有实现自动输入交易帐号。
 ##交易密码改成自己的
 password = '123456'
 ##按纽在屏幕上的坐标需要修改成适合自己机器的
@@ -19,16 +18,11 @@ pyautogui.press('winleft')
 time.sleep(1)
 ###游戏位置
 # 五次 向上键
-pyautogui.press('up')
-time.sleep(1)
-pyautogui.press('up')
-time.sleep(1)
-pyautogui.press('up')
-time.sleep(1)
-pyautogui.press('up')
-time.sleep(1)
-pyautogui.press('up')
-time.sleep(1)
+freq=0
+while freq <5 :
+    pyautogui.press('up')
+    time.sleep(0.5)
+    freq += 1
 ###PlayOnLinux
 # 向右键
 pyautogui.press('right')
@@ -41,7 +35,7 @@ time.sleep(3)
 region=(730, 260, 125 ,25)
 x,y = pyautogui.center(region)
 pyautogui.doubleClick(x,y)
-time.sleep(5)
+time.sleep(10)
 ##取消报错
 ##按纽在屏幕上的坐标region需要修改成适合自己机器的
 region=(770, 550, 80 ,25)
@@ -59,21 +53,21 @@ time.sleep(2)
 region=(930, 420, 75 ,20)
 x,y = pyautogui.center(region)
 pyautogui.doubleClick(x,y)
-time.sleep(2)
+time.sleep(9)
 ###登录行情加交易
 ##输入框在屏幕上的坐标需要修改成适合自己机器的
 pyautogui.click(560,380)
 secs_between_keys = 0.1
 pyautogui.typewrite(password, interval=secs_between_keys)
-##识别验证码输入验证码直到成功
+##识别验证码输入验证码
 captcha = 'testcaptcha'
 while not (captcha == '') :
     ##按纽在屏幕上的坐标region需要修改成适合自己机器的
     im = pyautogui.screenshot(region=(798, 400, 60 ,25))
     im.save('/tmp/temp.png')
-    time.sleep(10)
+    time.sleep(9)
     captcha = pytesseract.image_to_string('/tmp/temp.png')
-    time.sleep(5)
+    time.sleep(3)
     if not (captcha == '') :
         ##输入验证码
         ##输入框在屏幕上的坐标需要修改成适合自己机器的
@@ -86,7 +80,3 @@ while not (captcha == '') :
         x,y = pyautogui.center(region)
         pyautogui.doubleClick(x,y)
         time.sleep(20)
-if captcha == '':
-    print("登录成功")
-time.sleep(30)
-
