@@ -73,7 +73,10 @@ while not (captcha == '') :
     if not (captcha == '') :
         ##输入验证码
         ##输入框在屏幕上的坐标需要修改成适合自己机器的
-        pyautogui.click(670,415)
+        region=(695, 465, 145,30)
+        x,y = pyautogui.center(region)
+        pyautogui.click(x,y)
+        time.sleep(0.5)
         secs_between_keys = 0.1
         pyautogui.typewrite(captcha, interval=secs_between_keys)
         ##点击登录
