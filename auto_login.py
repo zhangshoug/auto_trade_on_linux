@@ -60,6 +60,7 @@ pyautogui.click(560,380)
 secs_between_keys = 0.1
 pyautogui.typewrite(password, interval=secs_between_keys)
 ##识别验证码输入验证码
+###captcha == ''，登录成功后出验证码的位置出现什么字符，每台机器屏幕不一样，需要根据具体的机器改动,这台机器正好是'',另一台机器不是''
 captcha = 'testcaptcha'
 while not (captcha == '') :
     ##按纽在屏幕上的坐标region需要修改成适合自己机器的
@@ -68,6 +69,7 @@ while not (captcha == '') :
     time.sleep(9)
     captcha = pytesseract.image_to_string('/tmp/temp.png')
     time.sleep(3)
+    ###captcha == ''，登录成功后出验证码的位置出现什么字符，每台机器屏幕不一样，需要根据具体的机器改动
     if not (captcha == '') :
         ##输入验证码
         ##输入框在屏幕上的坐标需要修改成适合自己机器的
