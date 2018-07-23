@@ -31,11 +31,16 @@ pyautogui.press('right')
 pyautogui.press('enter')
 time.sleep(3)
 #启动中投证券合一版
-##按纽在屏幕上的坐标region需要修改成适合自己机器的
-region=(730, 260, 125 ,25)
-x,y = pyautogui.center(region)
-pyautogui.doubleClick(x,y)
-time.sleep(10)
+#启动中投证券合一版
+# TAB 键
+pyautogui.press('tab')
+time.sleep(0.5)
+#向下键
+pyautogui.press('down')
+time.sleep(0.5)
+#  ENTER键
+pyautogui.press('enter')
+time.sleep(9)
 ##取消报错
 ##按纽在屏幕上的坐标region需要修改成适合自己机器的
 region=(770, 550, 80 ,25)
